@@ -1,0 +1,25 @@
+create toolbar layout
+	to set height to appBar set this ?attr/actionBarSize
+	to import this into a containing layout use include followed by <layout:"layout.xml">
+
+In menus.xml
+	create item
+		add xmlns:app=...
+		add app:showAsAction="always" and app:actionViewClass="android.support.v7.widget.SearchView"
+
+In Activity
+	obtain reference
+	call setSupportActionBar(Pass toolbar ref)
+	in onOptionCreate
+		Create a menuItem which references the searchView's id by calling findItem
+		create a searchView ref and set it by MenuItemCompat.getActionView(menuItem), also set listener
+	implement SearchView.OnQueryTextListener
+		in onQueryTextChanged(String x)
+			create new arraylist 
+			travers og list and search for occurence of string x using contains and add them to new lsit
+			pass list to recycleradapter
+
+In RecyclerAdapter
+	 create public function (ArrayList s)
+	 set curr list to s
+	 and call notifyDataSetChanged(); 
